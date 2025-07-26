@@ -1,0 +1,26 @@
+bookingType:one_way,round_trip,multi_trip
+date1:1,2,3,4,5,6,7,8,9,10
+origin1:Beijing,Shanghai,Nanjing,Dalian,Tokyo,Singapore,London,New York
+destination1:Beijing,Shanghai,Nanjing,Dalian,Tokyo,Singapore,London,New York
+date2:0,1,2,3,4,5,6,7,8,9,10
+origin2:Beijing,Shanghai,Nanjing,Dalian,Tokyo,Singapore,London,New York,null
+destination2:Beijing,Shanghai,Nanjing,Dalian,Tokyo,Singapore,London,New York,null
+
+[origin1]<>[destination1];
+ IF [bookingType]="one_way" THEN [date2]=0;
+ IF [bookingType]="one_way" THEN [origin2]="null";
+ IF [bookingType]="one_way" THEN [destination2]="null" ;
+ IF [bookingType]="round_trip" THEN [origin2]<>[destination2];
+ IF [bookingType]="round_trip" THEN [origin2]<>"null";
+ IF [bookingType]="round_trip" THEN [destination2]<>"null";
+ IF [bookingType]="round_trip" THEN [date2]<>0;
+ IF [bookingType]="round_trip" THEN [date1]<=[date2];
+ IF [bookingType]="round_trip" THEN [origin1]=[destination2];
+ IF [bookingType]="round_trip" THEN [origin2]=[destination1];
+ IF [bookingType]="multi_trip" THEN [origin2]<>[destination2];
+ IF [bookingType]="multi_trip" THEN [origin2]<>"null";
+ IF [bookingType]="multi_trip" THEN [destination2]<>"null";
+ IF [bookingType]="multi_trip" THEN [date2]<>0;
+ IF [bookingType]="multi_trip" THEN [date1]<=[date2];
+ IF [bookingType]="multi_trip" THEN [origin2]=[destination1];
+
